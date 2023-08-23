@@ -12,7 +12,7 @@ clean:
 buildAgent:
 	mkdir -p ${AGENT_APP}/Contents/MacOS
 	xcrun clang ${AGENT_SRC}/main.m \
-		-framework Foundation -framework Cocoa \
+		-framework Foundation -framework Cocoa -framework ScriptingBridge \
 		-o ${AGENT_APP}/Contents/MacOS/${AGENT_NAME}
 
 installAgentApp: buildAgent
