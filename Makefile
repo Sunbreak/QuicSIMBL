@@ -3,7 +3,7 @@ WORKING_DIR=$(shell pwd)
 PROJECT_NAME=QuicSIMBL
 BUILD_DIR=.build
 AGENT_NAME=${PROJECT_NAME}Agent
-AGENT_SRC=agent
+AGENT_SRC=LaunchAgent
 AGENT_APP=${BUILD_DIR}/${AGENT_NAME}.app
 
 clean:
