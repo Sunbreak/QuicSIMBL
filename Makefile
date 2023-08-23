@@ -9,7 +9,9 @@ clean:
 
 buildAgent:
 	mkdir -p ${AGENT_APP}/Contents/MacOS
-	swiftc ${AGENT_SRC}/main.swift -o ${AGENT_APP}/Contents/MacOS/${AGENT_NAME}
+	xcrun clang ${AGENT_SRC}/main.m \
+		-framework Foundation -framework Cocoa \
+		-o ${AGENT_APP}/Contents/MacOS/${AGENT_NAME}
 
 installAgentApp: buildAgent
 	cp ${AGENT_SRC}/app.plist ${AGENT_APP}/Contents/Info.plist
