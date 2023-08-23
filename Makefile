@@ -1,3 +1,5 @@
+WORKING_DIR=$(shell pwd)
+
 PROJECT_NAME=QuicSIMBL
 BUILD_DIR=.build
 AGENT_NAME=${PROJECT_NAME}Agent
@@ -19,4 +21,16 @@ installAgentApp: buildAgent
 runAgentApp: installAgentApp
 	open ${AGENT_APP}
 
-.PHONY: clean buildAgent installAgentApp runAgentApp
+prepareLaunchInfo:
+	cp ${AGENT_SRC}/launch.plist ${BUILD_DIR}
+	/usr/libexec/PlistBuddy -c "Set :Program ${WORKING_DIR}/${AGENT_APP}/Contents/MacOS/${AGENT_NAME}" ${BUILD_DIR}/launch.plist
+
+loadAgent: buildAgent prepareLaunchInfo
+	launchctl load -F ${BUILD_DIR}/launch.plist
+
+unloadAgent: prepareLaunchInfo
+	launchctl unload -F ${BUILD_DIR}/launch.plist
+
+.PHONY: clean \
+		buildAgent installAgentApp runAgentApp \
+		prepareLaunchInfo loadhAgent unloadAgent
