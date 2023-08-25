@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="QuicSIMBL Terminology">
+	<suite name="QuicSIMBL Suite" code="SIMe" description="Load QuicSIMBL">
+		<command name="inject QuicSIMBL" code="SIMeload" description="Inject QuicSIMBL into the receiving application."/>
+	</suite>
+</dictionary>
