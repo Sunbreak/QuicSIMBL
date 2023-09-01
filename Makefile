@@ -43,6 +43,10 @@ installAddition: buildAddition
 	mkdir -p ${ADDITION_BUNDLE}/Contents/Resources
 	cp ${ADDITION_SRC}/addition.plist ${ADDITION_BUNDLE}/Contents/Info.plist
 	cp ${ADDITION_SRC}/addition.sdef ${ADDITION_BUNDLE}/Contents/Resources/${ADDITION_NAME}.sdef
+	sdp -fa -o ${BUILD_DIR}/addition.r ${ADDITION_SRC}/addition.sdef
+	Rez -o ${ADDITION_BUNDLE}/Contents/Resources/${ADDITION_NAME}.rsrc -useDF \
+		-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
+		${BUILD_DIR}/addition.r
 
 loadAddition: installAddition
 	mkdir -p ${HOME}/Library/ScriptingAdditions/
