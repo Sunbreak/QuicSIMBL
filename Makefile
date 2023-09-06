@@ -17,7 +17,7 @@ clean:
 buildAgent:
 	mkdir -p ${AGENT_APP}/Contents/MacOS
 	xcrun clang ${AGENT_SRC}/main.m \
-		-framework Foundation -framework Cocoa -framework ScriptingBridge \
+		-fobjc-arc -framework Foundation -framework Cocoa -framework ScriptingBridge \
 		-o ${AGENT_APP}/Contents/MacOS/${AGENT_NAME}
 
 installAgent: buildAgent
@@ -36,7 +36,7 @@ unloadAgent: prepareLaunchInfo
 buildAddition:
 	mkdir -p ${ADDITION_BUNDLE}/Contents/MacOS
 	xcrun clang -bundle ${ADDITION_SRC}/addition.m \
-		-framework Foundation -framework Cocoa \
+		-fobjc-arc -framework Foundation -framework Cocoa \
 		-o ${ADDITION_BUNDLE}/Contents/MacOS/${ADDITION_NAME}
 
 installAddition: buildAddition
